@@ -3,6 +3,8 @@ import { Aluno } from "@/interfaces/alunos";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { getAluno } from "./actions";
+import { PenBox } from "lucide-react";
+import Link from "next/link";
 
 function UniverseCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -275,6 +277,9 @@ export default function AlunoPage() {
           <InfoRow label="CPF" value={aluno.cpf} />
           <InfoRow label="Email" value={aluno.email} />
         </div>
+        <Link href={`/aluno/${id}/editar`}>
+         <PenBox />
+        </Link>
       </div>
     </div>
   );

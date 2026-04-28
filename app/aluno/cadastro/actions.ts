@@ -2,6 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 interface CreateAluno {
     nome: string;
@@ -26,9 +27,13 @@ export async function createAluno(aluno: CreateAluno) {
     const data = await response.json();
 
     if(response.status === 201) {
-        revalidateTag("listar", "max")
+        revalidateTag("listar", "max");
         return;
     }
+
+    if(response.status === 401) {
+    redirect("/login")
+  }
 
     return data;
 }

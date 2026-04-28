@@ -1,8 +1,5 @@
-"use client";
-
 import AlunoItem from "@/components/AlunosItem";
 import { getAlunos } from "./actions";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 function StarField() {
@@ -58,12 +55,8 @@ function StarField() {
   );
 }
 
-export default function Alunos() {
-  const [alunos, setAlunos] = useState<{ id: number; nome: string }[]>([]);
-
-  useEffect(() => {
-    getAlunos().then(setAlunos);
-  }, []);
+export default async function Alunos() {
+  const alunos = await getAlunos()
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center bg-[#02060f]">
